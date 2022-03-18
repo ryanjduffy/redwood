@@ -1,4 +1,5 @@
-import type { PlaywrightTestConfig } from '@playwright/test'
+import { devices, PlaywrightTestConfig } from '@playwright/test'
+import { devices as replayDevices } from '@replayio/playwright'
 
 // See https://playwright.dev/docs/test-configuration#global-configuration
 const config: PlaywrightTestConfig = {
@@ -10,6 +11,26 @@ const config: PlaywrightTestConfig = {
   //     headless: false,
   //   },
   // },
+  projects: [
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+    },
+    {
+      name: 'replay-firefox',
+      use: {
+        ...replayDevices['Replay Firefox'],
+      },
+    },
+    {
+      name: 'replay-chromium',
+      use: {
+        ...replayDevices['Replay Chromium'],
+      },
+    },
+  ],
 }
 
 export default config

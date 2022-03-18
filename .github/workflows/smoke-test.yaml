@@ -6,12 +6,12 @@ on:
 
 jobs:
   smoke-test:
-    if: github.repository == 'redwoodjs/redwood'
+    # if: github.repository == 'redwoodjs/redwood'
     strategy:
       matrix:
         os: ['ubuntu-latest', 'windows-latest']
         node-version: ['14', '16']
-      fail-fast: true
+      fail-fast: false
     runs-on: ${{ matrix.os }}
     name: ${{ matrix.os }} | Node ${{ matrix.node-version }} latest
     env:
@@ -59,8 +59,11 @@ jobs:
         working-directory: ${{ steps.setup_test_project.outputs.test_project_path }}
 
       - name: Run smoke tests on 'rw dev' and 'rw serve'
-        working-directory: ./tasks/smoke-test
-        run: npx playwright test
+        uses: replayio/action-playwright@v0.2.0
+        with:
+          working-directory: ./tasks/smoke-test
+          issue-number: ${{ github.event.pull_request.number }}
+          apiKey: ${{ secrets.RECORD_REPLAY_API_KEY }}
         env:
           PROJECT_PATH: ${{ steps.setup_test_project.outputs.test_project_path }}
           REDWOOD_DISABLE_TELEMETRY: 1
