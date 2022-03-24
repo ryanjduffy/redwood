@@ -39,7 +39,7 @@ devServerTest(
 
     const usernameRow = await page.waitForSelector('*css=tr >> text=EMAIL')
     await expect(await usernameRow.innerHTML()).toBe(
-      '<td>EMAIL</td><td>testuser@bazinga.com</td>'
+      '<td>EMAIL</td><td>invaliduser@bazinga.com</td>'
     )
 
     const isAuthenticatedRow = await page.waitForSelector(
