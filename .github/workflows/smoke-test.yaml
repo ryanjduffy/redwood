@@ -64,6 +64,7 @@ jobs:
           working-directory: ./tasks/smoke-test
           issue-number: ${{ github.event.pull_request.number }}
           apiKey: ${{ secrets.RECORD_REPLAY_API_KEY }}
+          source: ${{ matrix.os }} | Node ${{ matrix.node-version }}
         env:
           PROJECT_PATH: ${{ steps.setup_test_project.outputs.test_project_path }}
           REDWOOD_DISABLE_TELEMETRY: 1
