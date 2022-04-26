@@ -59,7 +59,7 @@ jobs:
         working-directory: ${{ steps.setup_test_project.outputs.test_project_path }}
 
       - name: Run smoke tests on 'rw dev' and 'rw serve'
-        uses: replayio/action-playwright@v0.2.0
+        uses: replayio/action-playwright@ryan-update-comment-ui
         with:
           working-directory: ./tasks/smoke-test
           issue-number: ${{ github.event.pull_request.number }}
