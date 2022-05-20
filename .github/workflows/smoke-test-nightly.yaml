@@ -6,8 +6,8 @@ on:
       project:
         description: "Playwright project to use"
         default: replay-chromium
-  schedule:
-    - cron:  '30 5 * * *'
+#   schedule:
+#     - cron:  '30 5 * * *'
 
 jobs:
   smoke-test:
